@@ -10,8 +10,12 @@ echo "Extracting files..."
 ar vx StarUML-v2.6.0-64-bit
 tar -xf data.tar.gz
 
-echo "Transfering files (Please, insert your pass to become superuser)"
+echo "Installing and linking additonal dependencies... (Please, insert your pass to become superuser)"
 sudo su
+dnf -y install systemd-libs
+ln -s /usr/lib64/libudev.so.1 /usr/lib64/libudev.so.0
+
+echo "Transfering files"
 cp -rf opt/staruml/ /opt/
 cp -rf usr/share/doc/staruml/ /usr/share/doc/
 cp -rf usr/share/icons/hicolor/ /usr/share/icons/
