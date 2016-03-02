@@ -8,7 +8,7 @@ echo "Downloading package..."
 wget http://staruml.io/download/release/v2.6.0/StarUML-v2.6.0-64-bit.deb
 
 echo "Extracting files..."
-ar vx StarUML-v2.6.0-64-bit
+ar vx StarUML-v2.6.0-64-bit.deb
 tar -xf data.tar.gz
 
 echo "Installing and linking additonal dependencies... (Please, insert your pass to become superuser)"
