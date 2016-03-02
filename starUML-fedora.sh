@@ -2,6 +2,7 @@
 
 # This is a script for installing StarUML on Fedora
 # Made by Pedro R. de Oliveira (WolfangAukang)
+#NOTE: Please, install binutils before executing this script. I've checked Fedora Spin KDE 22 and it doesn't have this installed as default.
 
 echo "Downloading package..."
 wget http://staruml.io/download/release/v2.6.0/StarUML-v2.6.0-64-bit.deb
