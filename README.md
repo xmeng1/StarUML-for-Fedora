@@ -1,4 +1,4 @@
-# Script for installing StarUML for Fedora
+# Script for installing StarUML on Fedora
 
 This script was tested on Fedora 22. It downloads the version 2.60 of StarUML from its webpage. In case they update their version, please indicate it to me to test a new installation script (or maybe only change its version, hopefully).
 
