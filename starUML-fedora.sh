@@ -10,11 +10,17 @@ if [[ ! $(whoami) = "root" ]]; then
     exit 1
 fi
 
+if [[ $(uname -m) = "i386" ]] || [[ $(uname -m) = "i486" ]] || [[ $(uname -m) = "i586" ]] || [[ $(uname -m) = "i686" ]]; then
+    architecture=32
+else
+    architecture=64
+fi
+
 echo "Downloading package..."
-wget http://staruml.io/download/release/v2.6.0/StarUML-v2.6.0-64-bit.deb
+wget http://staruml.io/download/release/v2.6.0/StarUML-v2.6.0-$architecture-bit.deb
 
 echo "Extracting files..."
-ar vx StarUML-v2.6.0-64-bit.deb
+ar vx StarUML-v2.6.0-$architecture-bit.deb
 tar -xf data.tar.xz
 
 echo "Installing and linking additonal dependencies..."
@@ -31,7 +37,7 @@ echo "Making symlink..."
 ln -s /opt/staruml/staruml /usr/bin/
 
 echo "Removing files..."
-rm StarUML-v2.6.0-64-bit.deb
+rm StarUML-v2.6.0-$architecture-bit.deb
 rm -rf opt/
 rm -rf usr/
 rm control.tar.gz
