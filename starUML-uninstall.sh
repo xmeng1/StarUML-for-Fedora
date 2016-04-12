@@ -11,7 +11,7 @@ fi
 echo "Removing directories..."
 rm -rf /opt/staruml/
 rm -rf /usr/share/doc/staruml/
-rm -rf /usr/share/icons/hicolor/
+rm -rf /usr/share/icons/hicolor/scalable/apps/staruml.svg 
 rm /usr/share/applications/staruml.desktop
 
 echo "Done! Thanks"
