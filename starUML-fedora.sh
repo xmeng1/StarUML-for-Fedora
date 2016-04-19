@@ -24,7 +24,7 @@ ar vx StarUML-v2.6.0-$architecture-bit.deb
 tar -xf data.tar.xz
 
 echo "Installing and linking additonal dependencies..."
-dnf -y install systemd-libs
+dnf -y install systemd-libs compat-libgcrypt
 ln -s /usr/lib64/libudev.so.1 /usr/lib64/libudev.so.0
 
 echo "Transfering files"
