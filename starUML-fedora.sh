@@ -16,11 +16,13 @@ else
     architecture=64
 fi
 
+version=2.7.0
+
 echo "Downloading package..."
-wget http://staruml.io/download/release/v2.7.0/StarUML-v2.7.0-$architecture-bit.deb
+wget http://staruml.io/download/release/v2.7.0/StarUML-v$version-$architecture-bit.deb
 
 echo "Extracting files..."
-ar vx StarUML-v2.6.0-$architecture-bit.deb
+ar vx StarUML-v$version-$architecture-bit.deb
 tar -xf data.tar.xz
 
 echo "Installing and linking additonal dependencies..."
@@ -39,7 +41,7 @@ echo "Making symlink..."
 ln -s /opt/staruml/staruml /usr/bin/
 
 echo "Removing files..."
-rm StarUML-v2.6.0-$architecture-bit.deb
+rm StarUML-v$version-$architecture-bit.deb
 rm -rf opt/
 rm -rf usr/
 rm control.tar.gz
