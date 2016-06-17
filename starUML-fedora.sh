@@ -17,7 +17,7 @@ else
 fi
 
 echo "Downloading package..."
-wget http://staruml.io/download/release/v2.6.0/StarUML-v2.6.0-$architecture-bit.deb
+wget http://staruml.io/download/release/v2.7.0/StarUML-v2.7.0-$architecture-bit.deb
 
 echo "Extracting files..."
 ar vx StarUML-v2.6.0-$architecture-bit.deb
