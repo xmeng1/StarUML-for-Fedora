@@ -19,7 +19,10 @@ fi
 version=2.7.0
 
 echo "Downloading package..."
-wget http://staruml.io/download/release/v2.7.0/StarUML-v$version-$architecture-bit.deb
+if [ ! -f ./StarUML-v$version-$architecture-bit.deb ]
+then
+	wget http://staruml.io/download/release/v2.7.0/StarUML-v$version-$architecture-bit.deb
+fi
 
 echo "Extracting files..."
 ar vx StarUML-v$version-$architecture-bit.deb
@@ -27,9 +30,13 @@ tar -xf data.tar.xz
 
 echo "Installing and linking additonal dependencies..."
 dnf -y install systemd-libs
-#Only Fedora 23+ has this available
+wget https://copr.fedorainfracloud.org/coprs/red/libgcrypt.so.11/repo/fedora-22/red-libgcrypt.so.11-fedora-22.repo
+mv red-libgcrypt.so.11-fedora-22.repo /etc/yum.repos.d/red-libgcrypt.repo
 dnf -y install compat-libgcrypt
-ln -s /usr/lib64/libudev.so.1 /usr/lib64/libudev.so.0
+if [ ! -f /usr/lib64/libudev.so.0 ]
+then
+        ln -s /usr/lib64/libudev.so.1 /usr/lib64/libudev.so.0
+fi
 
 echo "Transfering files"
 cp -rf opt/staruml/ /opt/
@@ -38,7 +45,10 @@ cp -rf usr/share/icons/hicolor/ /usr/share/icons/
 cp staruml.desktop /usr/share/applications/
 
 echo "Making symlink..."
-ln -s /opt/staruml/staruml /usr/bin/
+if [ ! -f /usr/bin/staruml ]
+then
+        ln -s /opt/staruml/staruml /usr/bin/
+fi
 
 echo "Removing files..."
 rm StarUML-v$version-$architecture-bit.deb

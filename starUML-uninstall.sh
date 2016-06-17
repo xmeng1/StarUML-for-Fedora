@@ -13,5 +13,6 @@ rm -rf /opt/staruml/
 rm -rf /usr/share/doc/staruml/
 rm -rf /usr/share/icons/hicolor/scalable/apps/staruml.svg 
 rm /usr/share/applications/staruml.desktop
+rm /usr/bin/staruml
 
 echo "Done! Thanks"
