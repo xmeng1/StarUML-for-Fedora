@@ -2,8 +2,6 @@
 
 # This is a script for installing StarUML on Fedora
 # Made by Pedro R. de Oliveira (WolfangAukang)
-#NOTE1: Please, install binutils before executing this script. I've checked Fedora Spin KDE 22 and it doesn't have this installed as default.
-#NOTE2: If you don't have libgcrypt.so.11, get the red copr by executing "sudo dnf copr enable red/libgcrypt.so.11" and later do "sudo dnf install compat-libgcrypt". I've checked Fedora Spin KDE 22 and it doesn't have it as default.
 
 if [[ ! $(whoami) = "root" ]]; then
     echo "Please, execute this as root. It is required to do certain operations"
@@ -29,7 +27,7 @@ ar vx StarUML-v$version-$architecture-bit.deb
 tar -xf data.tar.xz
 
 echo "Installing and linking additonal dependencies..."
-dnf -y install systemd-libs
+dnf -y install systemd-libs binutils
 wget https://copr.fedorainfracloud.org/coprs/red/libgcrypt.so.11/repo/fedora-22/red-libgcrypt.so.11-fedora-22.repo
 mv red-libgcrypt.so.11-fedora-22.repo /etc/yum.repos.d/red-libgcrypt.repo
 dnf -y install compat-libgcrypt
