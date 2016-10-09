@@ -27,11 +27,10 @@ ar vx StarUML-v$version-$architecture-bit.deb
 tar -xf data.tar.xz
 
 echo "Installing and linking additonal dependencies..."
-dnf -y install systemd-libs binutils
+dnf -y install systemd-libs binutils compat-libgcrypt
 #If you are using Fedora 22 or below, uncomment this line. I commented them because Fedora 22 reached EOL and Fedora 23 has compat-libgcrypt
 #wget https://copr.fedorainfracloud.org/coprs/red/libgcrypt.so.11/repo/fedora-22/red-libgcrypt.so.11-fedora-22.repo
 #mv red-libgcrypt.so.11-fedora-22.repo /etc/yum.repos.d/red-libgcrypt.repo
-dnf -y install compat-libgcrypt
 if [ ! -f /usr/lib64/libudev.so.0 ]
 then
         ln -s /usr/lib64/libudev.so.1 /usr/lib64/libudev.so.0
