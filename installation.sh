@@ -19,7 +19,7 @@ version=2.7.0
 echo "Downloading package..."
 if [ ! -f ./StarUML-v$version-$architecture-bit.deb ]
 then
-	wget http://staruml.io/download/release/v2.7.0/StarUML-v$version-$architecture-bit.deb
+	wget http://staruml.io/download/release/v$version/StarUML-v$version-$architecture-bit.deb
 fi
 
 echo "Extracting files..."
@@ -28,8 +28,9 @@ tar -xf data.tar.xz
 
 echo "Installing and linking additonal dependencies..."
 dnf -y install systemd-libs binutils
-wget https://copr.fedorainfracloud.org/coprs/red/libgcrypt.so.11/repo/fedora-22/red-libgcrypt.so.11-fedora-22.repo
-mv red-libgcrypt.so.11-fedora-22.repo /etc/yum.repos.d/red-libgcrypt.repo
+#If you are using Fedora 22 or below, uncomment this line. I commented them because Fedora 22 reached EOL and Fedora 23 has compat-libgcrypt
+#wget https://copr.fedorainfracloud.org/coprs/red/libgcrypt.so.11/repo/fedora-22/red-libgcrypt.so.11-fedora-22.repo
+#mv red-libgcrypt.so.11-fedora-22.repo /etc/yum.repos.d/red-libgcrypt.repo
 dnf -y install compat-libgcrypt
 if [ ! -f /usr/lib64/libudev.so.0 ]
 then
