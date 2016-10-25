@@ -10,8 +10,10 @@ fi
 
 if [[ $(uname -m) = "i386" ]] || [[ $(uname -m) = "i486" ]] || [[ $(uname -m) = "i586" ]] || [[ $(uname -m) = "i686" ]]; then
     architecture=32
+    libVersion=i586
 else
     architecture=64
+    libVersion=x86_64
 fi
 
 version=2.7.0
@@ -29,8 +31,8 @@ tar -xf data.tar.xz
 echo "Installing and linking additonal dependencies..."
 dnf -y install systemd-libs binutils 
 #compat-libgcrypt seems to be not available so we will proceed to install libgcrypt from here
-wget http://download.opensuse.org/repositories/home:/fstrba/openSUSE_13.2/x86_64/libgcrypt11-1.5.4-1.1.x86_64.rpm
-rpm -Uvh libgcrypt11-1.5.4-1.1.x86_64.rpm
+wget http://download.opensuse.org/repositories/home:/fstrba/openSUSE_13.2/$libVersion/libgcrypt11-1.5.4-1.1.$libVersion.rpm
+rpm -Uvh libgcrypt11-1.5.4-1.1.$libVersion.rpm
 if [ ! -f /usr/lib64/libudev.so.0 ]
 then
         ln -s /usr/lib64/libudev.so.1 /usr/lib64/libudev.so.0
@@ -55,6 +57,6 @@ rm -rf usr/
 rm control.tar.gz
 rm data.tar.xz
 rm debian-binary
-rm libgcrypt11-1.5.4-1.1.x86_64.rpm
+rm libgcrypt11-1.5.4-1.1.$libVersion.rpm
 
 echo "Done! Enjoy"
