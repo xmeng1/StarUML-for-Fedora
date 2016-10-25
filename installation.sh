@@ -27,10 +27,10 @@ ar vx StarUML-v$version-$architecture-bit.deb
 tar -xf data.tar.xz
 
 echo "Installing and linking additonal dependencies..."
-dnf -y install systemd-libs binutils compat-libgcrypt
-#If you are using Fedora 22 or below, uncomment this line. I commented them because Fedora 22 reached EOL and Fedora 23 has compat-libgcrypt
-#wget https://copr.fedorainfracloud.org/coprs/red/libgcrypt.so.11/repo/fedora-22/red-libgcrypt.so.11-fedora-22.repo
-#mv red-libgcrypt.so.11-fedora-22.repo /etc/yum.repos.d/red-libgcrypt.repo
+dnf -y install systemd-libs binutils 
+#compat-libgcrypt seems to be not available so we will proceed to install libgcrypt from here
+wget http://download.opensuse.org/repositories/home:/fstrba/openSUSE_13.2/x86_64/libgcrypt11-1.5.4-1.1.x86_64.rpm
+rpm -Uvh libgcrypt11-1.5.4-1.1.x86_64.rpm
 if [ ! -f /usr/lib64/libudev.so.0 ]
 then
         ln -s /usr/lib64/libudev.so.1 /usr/lib64/libudev.so.0
@@ -55,5 +55,6 @@ rm -rf usr/
 rm control.tar.gz
 rm data.tar.xz
 rm debian-binary
+rm libgcrypt11-1.5.4-1.1.x86_64.rpm
 
 echo "Done! Enjoy"
