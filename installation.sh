@@ -16,7 +16,7 @@ else
     libVersion=x86_64
 fi
 
-version=2.7.0
+version=2.8.0
 
 echo "Downloading package..."
 if [ ! -f ./StarUML-v$version-$architecture-bit.deb ]
@@ -51,12 +51,12 @@ then
 fi
 
 echo "Removing files..."
-rm StarUML-v$version-$architecture-bit.deb
 rm -rf opt/
 rm -rf usr/
 rm control.tar.gz
 rm data.tar.xz
 rm debian-binary
+rm StarUML-v$version-$architecture-bit.deb
 rm libgcrypt11-1.5.4-1.1.$libVersion.rpm
 
 echo "Done! Enjoy"

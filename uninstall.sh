@@ -15,4 +15,14 @@ rm -rf /usr/share/icons/hicolor/scalable/apps/staruml.svg
 rm /usr/share/applications/staruml.desktop
 rm /usr/bin/staruml
 
+while true;
+do
+    read -p "Do you wish to remove external libgcrypt library? [Y/n]" yn
+    case $yn in
+	[Yy]* ) rpm -e libgcrypt11-1.5.4-1.1.x86_64
+                break;;
+	[Nn]* ) break;;
+    esac
+done
+
 echo "Done! Thanks"
