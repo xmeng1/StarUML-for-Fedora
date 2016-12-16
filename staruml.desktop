@@ -5,5 +5,5 @@ TryExec=/usr/bin/staruml
 Exec=/usr/bin/staruml
 Icon=/opt/staruml/appshell256.png
 Type=Application
-Categories=GNOME;GTK;Utility;
+Categories=Development;GNOME;GTK
 StartupNotify=true 
