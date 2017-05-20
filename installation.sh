@@ -21,7 +21,18 @@ version=2.8.0
 echo "Downloading package..."
 if [ ! -f ./StarUML-v$version-$architecture-bit.deb ]
 then
-	wget http://staruml.io/download/release/v$version/StarUML-v$version-$architecture-bit.deb
+        #Check if it has curl or wget
+        if type curl > /dev/null; then
+	   curl -O http://staruml.io/download/release/v$version/StarUML-v$version-$architecture-bit.deb
+        elif type wget > /dev/null; then
+	   wget http://staruml.io/download/release/v$version/StarUML-v$version-$architecture-bit.deb          
+        else
+           echo "You must install curl or wget to download the compiled packages."
+           exit 1
+        fi
+else
+        echo "There were errors downloading the package"
+        exit 1
 fi
 
 echo "Extracting files..."
