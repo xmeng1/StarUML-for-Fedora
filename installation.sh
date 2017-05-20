@@ -23,7 +23,7 @@ if [ ! -f ./StarUML-v$version-$architecture-bit.deb ]
 then
         #Check if it has curl or wget
         if type curl > /dev/null; then
-	   curl -O http://staruml.io/download/release/v$version/StarUML-v$version-$architecture-bit.deb
+	   curl -O -L http://staruml.io/download/release/v$version/StarUML-v$version-$architecture-bit.deb
         elif type wget > /dev/null; then
 	   wget http://staruml.io/download/release/v$version/StarUML-v$version-$architecture-bit.deb          
         else
