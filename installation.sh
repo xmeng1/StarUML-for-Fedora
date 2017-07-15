@@ -42,7 +42,9 @@ tar -xf data.tar.xz
 echo "Installing and linking additonal dependencies..."
 dnf -y install systemd-libs binutils 
 #compat-libgcrypt seems to be not available so we will proceed to install libgcrypt from here
-wget http://download.opensuse.org/repositories/home:/fstrba/openSUSE_13.2/$libVersion/libgcrypt11-1.5.4-1.1.$libVersion.rpm
+wget http://download.opensuse.org/repositories/home:/fstrba/openSUSE_Factory/$libVersion/libgcrypt11-1.5.4-1.265.$libVersion.rpm
+#change the original filename rather than modify 3 more lines across 2 files.
+mv libgcrypt11-1.5.4-1.256.$libVersion.rpm libgcrypt11-1.5.4-1.1.$libVersion.rpm
 rpm -Uvh libgcrypt11-1.5.4-1.1.$libVersion.rpm
 if [ ! -f /usr/lib64/libudev.so.0 ]
 then
