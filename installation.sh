@@ -18,14 +18,17 @@ fi
 
 version=2.8.0
 
+libgcryptPackageName="libgcrypt.rpm"
+starUMLPackageName=StarUML-v$version-$architecture-bit.deb
+
 echo "Downloading package..."
-if [ ! -f ./StarUML-v$version-$architecture-bit.deb ]
+if [ ! -f ./$starUMLPackageName ]
 then
         #Check if it has curl or wget
         if type curl > /dev/null; then
-	   curl -O -L http://staruml.io/download/release/v$version/StarUML-v$version-$architecture-bit.deb
+	   curl -O -L http://staruml.io/download/release/v$version/$starUMLPackageName
         elif type wget > /dev/null; then
-	   wget http://staruml.io/download/release/v$version/StarUML-v$version-$architecture-bit.deb          
+	   wget http://staruml.io/download/release/v$version/$starUMLPackageName          
         else
            echo "You must install curl or wget to download the compiled packages."
            exit 1
@@ -36,16 +39,14 @@ else
 fi
 
 echo "Extracting files..."
-ar vx StarUML-v$version-$architecture-bit.deb
+ar vx $starUMLPackageName
 tar -xf data.tar.xz
 
 echo "Installing and linking additonal dependencies..."
-dnf -y install systemd-libs binutils 
+dnf -y install systemd-libs binutils
 #compat-libgcrypt seems to be not available so we will proceed to install libgcrypt from here
-wget http://download.opensuse.org/repositories/home:/fstrba/openSUSE_Factory/$libVersion/libgcrypt11-1.5.4-1.265.$libVersion.rpm
-#change the original filename rather than modify 3 more lines across 2 files.
-mv libgcrypt11-1.5.4-1.256.$libVersion.rpm libgcrypt11-1.5.4-1.1.$libVersion.rpm
-rpm -Uvh libgcrypt11-1.5.4-1.1.$libVersion.rpm
+wget http://download.opensuse.org/repositories/home:/fstrba/openSUSE_Factory/$libVersion/libgcrypt11-1.5.4-1.265.$libVersion.rpm -O $libgcryptPackageName
+rpm -Uvh $libgcryptPackageName
 if [ ! -f /usr/lib64/libudev.so.0 ]
 then
         ln -s /usr/lib64/libudev.so.1 /usr/lib64/libudev.so.0
@@ -69,7 +70,7 @@ rm -rf usr/
 rm control.tar.gz
 rm data.tar.xz
 rm debian-binary
-rm StarUML-v$version-$architecture-bit.deb
-rm libgcrypt11-1.5.4-1.1.$libVersion.rpm
+rm $starUMLPackageName
+rm $libgcryptPackageName
 
 echo "Done! Enjoy"
