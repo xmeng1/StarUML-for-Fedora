@@ -17,11 +17,11 @@ rm /usr/bin/staruml
 
 while true;
 do
-    read -p "Do you wish to remove external libgcrypt library? [Y/n]" yn
+    read -p "Do you wish to remove external libgcrypt library? (not recommended if you are not sure) [y/N]" yn
     case $yn in
-	[Yy]* ) rpm -e libgcrypt11-1.5.4-1.1.x86_64
+	[Yy]* ) dnf remove libgcrypt11 -y
                 break;;
-	[Nn]* ) break;;
+	* ) break;;
     esac
 done
 
