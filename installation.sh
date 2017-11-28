@@ -26,6 +26,8 @@ if [ ! -f ./$starUMLPackageName ]
 then
         #Check if it has curl or wget
         if type curl > /dev/null; then
+	# if the original link is not work: 
+	# https://web.archive.org/web/20171019000311if_/http://starumlreleases-7a0.kxcdn.com/v2.8.0/StarUML-v2.8.0-64-bit.deb
 	   curl -O -L http://staruml.io/download/release/v$version/$starUMLPackageName
         elif type wget > /dev/null; then
 	   wget http://staruml.io/download/release/v$version/$starUMLPackageName          
